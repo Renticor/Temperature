@@ -18,7 +18,9 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -30,6 +32,9 @@ public:
     QWidget *centralWidget;
     QLabel *label;
     QPushButton *pushButton;
+    QTextEdit *textEdit;
+    QRadioButton *radioButton;
+    QRadioButton *radioButton_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -38,19 +43,33 @@ public:
     {
         if (TemperatureClass->objectName().isEmpty())
             TemperatureClass->setObjectName(QStringLiteral("TemperatureClass"));
-        TemperatureClass->resize(600, 400);
+        TemperatureClass->setWindowModality(Qt::NonModal);
+        TemperatureClass->resize(437, 325);
+        TemperatureClass->setCursor(QCursor(Qt::ArrowCursor));
+        TemperatureClass->setContextMenuPolicy(Qt::DefaultContextMenu);
         centralWidget = new QWidget(TemperatureClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(156, 202, 161, 51));
+        label->setGeometry(QRect(170, 70, 161, 51));
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(200, 100, 75, 23));
+        pushButton->setGeometry(QRect(70, 30, 75, 23));
+        pushButton->setCursor(QCursor(Qt::ArrowCursor));
+        textEdit = new QTextEdit(centralWidget);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setGeometry(QRect(60, 70, 101, 51));
+        radioButton = new QRadioButton(centralWidget);
+        radioButton->setObjectName(QStringLiteral("radioButton"));
+        radioButton->setGeometry(QRect(180, 40, 82, 17));
+        radioButton->setChecked(true);
+        radioButton_2 = new QRadioButton(centralWidget);
+        radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
+        radioButton_2->setGeometry(QRect(290, 40, 82, 17));
         TemperatureClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(TemperatureClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 600, 21));
+        menuBar->setGeometry(QRect(0, 0, 437, 21));
         TemperatureClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(TemperatureClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -60,6 +79,7 @@ public:
         TemperatureClass->setStatusBar(statusBar);
 
         retranslateUi(TemperatureClass);
+        QObject::connect(pushButton, SIGNAL(clicked()), label, SLOT(show()));
 
         QMetaObject::connectSlotsByName(TemperatureClass);
     } // setupUi
@@ -67,8 +87,10 @@ public:
     void retranslateUi(QMainWindow *TemperatureClass)
     {
         TemperatureClass->setWindowTitle(QApplication::translate("TemperatureClass", "Temperature", Q_NULLPTR));
-        label->setText(QApplication::translate("TemperatureClass", "TextLabel", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("TemperatureClass", "PushButton", Q_NULLPTR));
+        label->setText(QString());
+        pushButton->setText(QApplication::translate("TemperatureClass", "Zamien", Q_NULLPTR));
+        radioButton->setText(QApplication::translate("TemperatureClass", "Kelwiny", Q_NULLPTR));
+        radioButton_2->setText(QApplication::translate("TemperatureClass", "Celcjusza", Q_NULLPTR));
     } // retranslateUi
 
 };
